@@ -20,19 +20,15 @@
 //return that sum
 
 function handValue (hand) {
-  let cards = {"2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, "J": 10, "Q": 10, "K": 10,}
+  let cards = {"2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10,
+  "J": 10, "Q": 10, "K": 10, "A": 11 }
   let totalValue = 0
   for (var i = 0; i < hand.length; i++) {
-    if (totalValue <= 10 && hand[i] === "A") {
-      totalValue += 11
-    } else if (totalValue >= 11 && hand[i] === "A") {
-      totalValue += 1
-    } else if (totalValue <= 10 && (2 * hand[i] === "A")) {
-      totalValue +=12
-    } else if (totalValue >= 11 && (2 * hand[i] === "A")) {
-      totalValue += 2
-    } else {
-      totalValue += cards[hand[i]]
+    totalValue += cards[hand[i]]
+  }
+  for (var i = 0; i < hand.length; i++) {
+    if (hand[i] === "A" && totalValue > 21) {
+      totalValue -= 10
     }
   }
   return totalValue
