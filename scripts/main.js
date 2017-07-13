@@ -9,24 +9,34 @@
    write your logic.
 */
 
-let cards = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" ]
-let _A = ["1", "11"]
-let _K = ["10"]
-let _Q = ["10"]
-let _J = ["10"]
+
 
 //if cards <= 21, you win
 //take
 
-
+//create an array(or object with a set of keys???) showing the cards
+//Find a way to determin how many cards are in the hand
+//find a way to find the SUM of those cards
+//return that sum
 
 function handValue (hand) {
-  for (var i = 0; i < cards.length; i++) {
-    cards[i]
+  let cards = {"2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, "J": 10, "Q": 10, "K": 10,}
+  let totalValue = 0
+  for (var i = 0; i < hand.length; i++) {
+    if (totalValue <= 10 && hand[i] === "A") {
+      totalValue += 11
+    } else if (totalValue >= 11 && hand[i] === "A") {
+      totalValue += 1
+    } else if (totalValue <= 10 && (2 * hand[i] === "A")) {
+      totalValue +=12
+    } else if (totalValue >= 11 && (2 * hand[i] === "A")) {
+      totalValue += 2
+    } else {
+      totalValue += cards[hand[i]]
+    }
   }
-
-
-  return;
+  return totalValue
+  console.log(totalValue)
 }
 
 
